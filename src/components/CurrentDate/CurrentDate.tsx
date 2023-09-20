@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export function CurrentDate() {
-  const date = new Date();
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
+  const [currentTime, setCurrentTime] = useState(new Date())
+  setInterval(()=>{
+    setCurrentTime(new Date())
+  },1000)
+  
+  
+  
+
+  const hours = currentTime.getHours();
+  const minutes = currentTime.getMinutes();
   const weekday = [
     "Sunday",
     "Monday",
@@ -13,7 +20,7 @@ export function CurrentDate() {
     "Friday",
     "Saturday",
   ];
-  let day = weekday[date.getDay()];
+  let day = weekday[currentTime.getDay()];
   const months = [
     "January",
     "February",
@@ -28,9 +35,8 @@ export function CurrentDate() {
     "November",
     "December",
   ];
-  let month = months[date.getMonth()];
-  let number = date.getDate()
-  
+  let month = months[currentTime.getMonth()];
+  let number = currentTime.getDate();
 
   return (
     <div className="flex flex-col items-center text-white">
@@ -42,7 +48,9 @@ export function CurrentDate() {
       <div className="flex items-center gap-1">
         <h1 className="text-7xl">{hours}</h1>
         <span className="text-7xl">:</span>
-        <h1 className="text-7xl">{minutes}</h1>
+        <h1 className="text-7xl">
+          {minutes < 10 && minutes > 0 ? "0" + minutes : minutes}
+        </h1>
       </div>
     </div>
   );
