@@ -6,9 +6,6 @@ export function CurrentDate() {
     setCurrentTime(new Date())
   },1000)
   
-  
-  
-
   const hours = currentTime.getHours();
   const minutes = currentTime.getMinutes();
   const weekday = [
