@@ -43,7 +43,6 @@ export function PasswordScreen() {
 
   return (
     <div className="h-full flex flex-col items-center justify-between py-3 pb-5">
-      <Camera position="locked" />
       <div className="flex flex-col items-center gap-5">
         <h2 className="text-white text-lg">
           {isSet ? "Enter Passcode" : "Choose Passcode"}
