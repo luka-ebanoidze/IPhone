@@ -1,9 +1,11 @@
 import { Outlet } from "react-router-dom";
 import { Camera } from "../components/Camera";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 import { AiOutlineWifi } from "react-icons/ai";
 import { BsBatteryHalf } from "react-icons/bs";
+import { MainButton } from "../components/MainButton";
 
 export function Layout() {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -14,9 +16,15 @@ export function Layout() {
   const hours = currentTime.getHours();
   const minutes = currentTime.getMinutes();
 
+  let param = useParams();
+
   return (
-    <div className="w-full h-full flex flex-col">
-      <header className="flex items-center justify-center gap-5 my-3">
+    <div
+      className={`w-full h-full flex flex-col items-center ${
+        param.calculator && "bg-black"
+      }`}
+    >
+      <header className="flex items-center justify-center gap-5 my-3 w-full">
         <div className="text-white">
           <span>{hours}</span>
           <span>:</span>
@@ -33,6 +41,7 @@ export function Layout() {
         </div>
       </header>
       <Outlet />
+      {param.app && <MainButton />}
     </div>
   );
 }
